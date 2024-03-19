@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using TMPro;
 
 public sealed class Resorces : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public sealed class Resorces : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    private TMP_Text koliktamje;
     public static int gold;
     public static int stone;
     public static int numBuildings;
@@ -37,6 +40,7 @@ public sealed class Resorces : MonoBehaviour
 
     private void Update()
     {
+        koliktamje.text = "Gold:" + gold + "  Stone:" + stone;
         // Pøièítá zdroje v daném intervalu
         timeSinceLastUpdate += Time.deltaTime;
         if (timeSinceLastUpdate >= updateInterval)

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    int kolikstoji = 5;
     public TileData TileData;
 
     public GameObject buildingPrefab;
@@ -19,7 +20,8 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (Resorces.SpendGold(koliktostoji*2))
+
+        if (Resorces.SpendGold(koliktostoji * 2))
         {
             if (Resorces.SpendStone(koliktostoji))
             {
@@ -39,6 +41,5 @@ public class Tile : MonoBehaviour
                 Resorces.gold += koliktostoji * 2;
             }
         }
-        
     }
 }
