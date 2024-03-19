@@ -8,7 +8,7 @@ public class Tile : MonoBehaviour
     public TileData TileData;
 
     public GameObject buildingPrefab;
-
+    private int koliktostoji = 5;
     internal void Build(GameObject prefab)
     {
         // Vytvoøí prefab na pozici støedu políèka
@@ -19,9 +19,26 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-        CommandQueue.Instance.EnqueueCommand(new BuildCommand() { 
-            prefab = buildingPrefab, 
-            tile = this
-        });
+        if (Resorces.SpendGold(koliktostoji*2))
+        {
+            if (Resorces.SpendStone(koliktostoji))
+            {
+                koliktostoji += 3;
+                Resorces.numBuildings++;
+                CommandQueue.Instance.EnqueueCommand(new BuildCommand()
+                {
+                    prefab = buildingPrefab,
+                    tile = this
+                });
+                Debug.Log(koliktostoji);
+                Debug.Log(Resorces.gold);
+                Debug.Log(Resorces.stone);
+            }
+            else
+            {
+                Resorces.gold += koliktostoji * 2;
+            }
+        }
+        
     }
 }
